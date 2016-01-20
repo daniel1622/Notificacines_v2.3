@@ -11,6 +11,7 @@ import com.comunidadesvirtualesonline.cvo_notificacines.GCMIntentService;
 
 public class StartAplication extends AppCompatActivity {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -18,9 +19,9 @@ public class StartAplication extends AppCompatActivity {
 
         GCMIntentService Registro = new GCMIntentService();
         if(Registro.isRegistro()){
-            Log.i("Nos resgitramos este es ek token: ", Registro.getToken());
+            Log.i("Nos resgitramos este es ek token: ".toString(), Registro.getToken());
         }else{
-            Log.i("No pudimos registrarnos :'(", "y no se porque!!");
+            Log.i("No pudimos registrarnos :'(".toString(), "y no se porque!!");
         }
     }
 
