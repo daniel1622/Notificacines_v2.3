@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_id": "default-demo-app-d44e5",
+    "project_number": "127877205306",
+    "name": "Default Demo App"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:127877205306:android:f36173e948059ccb",
+        "client_id": "com.comunidadesvirtualesonline.cvo_notificacines",
+        "client_type": 1,
+        "android_client_info": {
+          "package_name": "com.comunidadesvirtualesonline.cvo_notificacines"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "cloud_messaging_service": {
+          "status": 2,
+          "apns_config": []
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "google_signin_service": {
+          "status": 1
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "client_info": [],
+  "ARTIFACT_VERSION": "1"
+}

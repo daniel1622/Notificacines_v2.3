@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Usuario"
+        android:id="@+id/inicio_usuario"
+        android:textColor="@color/common_plus_signin_btn_text_light"
+        android:background="@color/common_action_bar_splitter"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="170dp" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:text="Contraseña"
+        android:gravity="center"
+        android:id="@+id/inicio_contraseña"
+        android:textColor="@color/common_plus_signin_btn_text_light"
+        android:background="@color/common_action_bar_splitter"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:id="@+id/button"
+        android:textColor="@color/Blanco"
+        android:background="@color/colorPrimaryDark"
+        android:layout_gravity="center_vertical"
+        android:layout_marginBottom="135dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/inicio_contraseña"
+        android:layout_alignStart="@+id/inicio_contraseña"
+        android:layout_alignRight="@+id/inicio_contraseña"
+        android:layout_alignEnd="@+id/inicio_contraseña" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Iniciar  Sesion"
+        android:id="@+id/textView3"
+        android:textSize="30dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
+
+
+</RelativeLayout>

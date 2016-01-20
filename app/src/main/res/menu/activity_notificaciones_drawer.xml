@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_inicio"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="@string/inicio_item" />
+        <item
+            android:id="@+id/nav_usuario"
+            android:icon="@drawable/user"
+            android:title="@string/Usuarios_item" />
+
+    </group>
+
+    <item android:title="Sesión">
+        <menu>
+            <item
+                android:id="@+id/nav_config"
+                android:icon="@drawable/ic_settings"
+                android:title="@string/Config_item" />
+            <item
+                android:id="@+id/nav_cerrar_Sesion"
+                android:icon="@drawable/ic_sesion"
+                android:title="@string/cerrar_sesion_item" />
+        </menu>
+    </item>
+
+
+</menu>

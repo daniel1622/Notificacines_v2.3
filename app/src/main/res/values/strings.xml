@@ -1,0 +1,32 @@
+<resources>
+    <string name="app_name">Comunidades Virtuales Online</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="inicio_item"> Inicio </string>
+    <string name="Usuarios_item"> Usuarios </string>
+    <string name="Config_item"> Configuraciones </string>
+    <string name="cerrar_sesion_item">Cerrar Sesion </string>
+    <string name="nom_colegio"> Institucion Educativa NN </string>
+    <string name="C.V.O_item"> Comunidades Virtuales Online </string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+    <string name="gcm_send_message">Token retrieved and sent to server! You can now use gcmsender to
+        send downstream messages to this app.</string>
+    <string name="registering_message">Generating InstanceID token...</string>
+    <string name="token_error_message">An error occurred while either fetching the InstanceID token,
+        sending the fetched token to the server or subscribing to the PubSub topic. Please try
+        running the sample again.</string>
+
+
+
+
+
+
+</resources>

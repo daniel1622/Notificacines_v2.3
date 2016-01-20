@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/img3"
+    android:visibility="visible">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Bienvenidos a la aplicacion alertapp, una aplicacion diseñada para facilitar la vida de los usuarios, esperamos que la experiencia sea de su mayor gusto..."
+
+        android:id="@+id/textView2"
+        android:textColor="@color/common_plus_signin_btn_text_dark_disabled"
+        android:layout_marginBottom="154dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_inicio"
+        android:src="@drawable/ic_play"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="34dp"
+        android:scaleType="fitCenter"
+        android:onClick="onClickInicio"
+        android:background="@drawable/btn_circle"
+        android:focusable="false" />
+
+</RelativeLayout>
