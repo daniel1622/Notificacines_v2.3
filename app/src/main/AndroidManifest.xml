@@ -8,14 +8,11 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <uses-permission android:name="android.permission.INTERNET" />
         <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
-
         <activity
-            android:name=".Main"
+            android:name=".StartAplication"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,8 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
         <activity
             android:name=".Notificaciones"
             android:label="@string/app_name"
@@ -35,88 +30,85 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-
-
         <activity
             android:name=".inicio"
-            android:label="@string/app_name"  >
+            android:label="@string/app_name">
             <intent-filter>
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Inicio_Sesion"
-            android:label="@string/app_name"  >
+            android:label="@string/app_name">
             <intent-filter>
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Envio_Mensajes"
-            android:label="@string/app_name"  >
+            android:label="@string/app_name">
             <intent-filter>
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <!--
+  ATTENTION: This intent was auto-generated. Follow instructions at
+  https://g.co/AppIndexing/AndroidStudio to publish your Android app deep links.
+        -->
 
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
 
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!--
+                  ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
+                  TODO: Change the host or pathPrefix as necessary.
+            -->
+            <data
+                android:host="cvo_notificacines.comunidadesvirtualesonline.com"
+                android:pathPrefix="/main"
+                android:scheme="http" />
+        </intent-filter>
+        <!--
+ ATTENTION: This intent was auto-generated. Follow instructions at
+  https://g.co/AppIndexing/AndroidStudio to publish your Android app deep links.
+        -->
 
-            <!-- ATTENTION: This intent was auto-generated. Follow instructions at
-  https://g.co/AppIndexing/AndroidStudio to publish your Android app deep links. -->
+        <intent-filter>
+            <action android:name="android.intent.action.VIEW" />
 
-            <intent-filter>
+            <category android:name="android.intent.category.DEFAULT" />
+            <category android:name="android.intent.category.BROWSABLE" />
+            <!--
+                  ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
+                  TODO: Change the host or pathPrefix as necessary.
+            -->
+            <data
+                android:host="cvo_notificacines.comunidadesvirtualesonline.com"
+                android:pathPrefix="/gcmquickstart"
+                android:scheme="http" />
+        </intent-filter>
 
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
-                  TODO: Change the host or pathPrefix as necessary. -->
-                <data
-                    android:host="cvo_notificacines.comunidadesvirtualesonline.com"
-                    android:pathPrefix="/main"
-                    android:scheme="http" />
-            </intent-filter><!-- ATTENTION: This intent was auto-generated. Follow instructions at
-  https://g.co/AppIndexing/AndroidStudio to publish your Android app deep links. -->
-
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-                <category android:name="android.intent.category.BROWSABLE" />
-                <!-- ATTENTION: This data URL was auto-generated. We recommend that you use the HTTP scheme.
-                  TODO: Change the host or pathPrefix as necessary. -->
-                <data
-                    android:host="cvo_notificacines.comunidadesvirtualesonline.com"
-                    android:pathPrefix="/gcmquickstart"
-                    android:scheme="http" />
-            </intent-filter>
-
-
-
-                <!-- [START gcm_receiver] -->
+        <!-- [START gcm_receiver] -->
         <receiver
             android:name="com.google.android.gms.gcm.GcmReceiver"
             android:exported="true"
-            android:permission="com.google.android.c2dm.permission.SEND" >
+            android:permission="com.google.android.c2dm.permission.SEND">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
                 <category android:name="com.comunidadesvirtualesonline.cvo_notificacines" />
             </intent-filter>
         </receiver>
         <!-- [END gcm_receiver] -->
 
+
         <!-- [START gcm_listener] -->
         <service
             android:name=".MyGcmListenerService"
-            android:exported="false" >
+            android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
             </intent-filter>
@@ -127,15 +119,18 @@
             android:name=".MyInstanceIDListenerService"
             android:exported="false">
             <intent-filter>
-                <action android:name="com.google.android.gms.iid.InstanceID"/>
+                <action android:name="com.google.android.gms.iid.InstanceID" />
             </intent-filter>
         </service>
         <!-- [END instanceId_listener] -->
         <service
             android:name=".RegistrationIntentService"
-            android:exported="false">
-        </service>
+            android:exported="false"></service>
 
+        <activity
+            android:name=".StartAplication"
+            android:label="@string/title_activity_start_aplicatio2"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
