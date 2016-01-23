@@ -40,6 +40,7 @@ public class Notificaciones extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
       // setToolbar();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);

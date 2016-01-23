@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item android:id="@+id/back"
+        android:icon="@android:drawable/ic_menu_revert"
+        android:title="atras"
+        android:orderInCategory="1"
+        android:showAsAction="ifRoom"/>
+    <item android:id="@+id/enviar"
+        android:icon="@android:drawable/ic_menu_send"
+        android:title="otro"
+        android:orderInCategory="2"
+        android:showAsAction="ifRoom"/>
+
+
+    <item android:id="@+id/edit"
+        android:title="editar"
+        android:orderInCategory="3"
+        android:showAsAction="never"/>
+    <item android:id="@+id/delete"
+        android:title="eliminar"
+        android:orderInCategory="4"
+        android:showAsAction="never"/>
+
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/action_settings"
+        app:showAsAction="never" />
+
+
+
+</menu>

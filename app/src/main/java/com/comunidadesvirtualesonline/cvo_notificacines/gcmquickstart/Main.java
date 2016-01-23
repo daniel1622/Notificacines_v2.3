@@ -82,6 +82,7 @@ public class Main extends AppCompatActivity {
                 if (sentToken) {
                     mInformationTextView.setText(getString(R.string.gcm_send_message));
 
+
                 } else {
                     mInformationTextView.setText(getString(R.string.token_error_message));
                 }

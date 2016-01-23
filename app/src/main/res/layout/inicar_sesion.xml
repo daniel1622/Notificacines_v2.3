@@ -9,7 +9,7 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:text="Usuario"
+        android:hint="Usuario"
         android:id="@+id/inicio_usuario"
         android:textColor="@color/common_plus_signin_btn_text_light"
         android:background="@color/common_action_bar_splitter"
@@ -21,7 +21,8 @@
     <EditText
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:text="Contraseña"
+        android:hint="Contraseña"
+        android:password="true"
         android:gravity="center"
         android:id="@+id/inicio_contraseña"
         android:textColor="@color/common_plus_signin_btn_text_light"

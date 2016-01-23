@@ -13,7 +13,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="0dp"
         android:hint="De"
         />
 
@@ -23,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="50dp"
         android:hint="Para"
         />
 
@@ -33,7 +33,7 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="100dp"
         android:hint="Asunto"
         />
 
@@ -45,7 +45,7 @@
         android:layout_alignParentLeft="true"
         android:gravity="left"
         android:layout_alignParentStart="true"
-        android:layout_marginTop="170dp"
+        android:layout_marginTop="155dp"
         android:hint="Escribe tu mensaje"
         />
 
