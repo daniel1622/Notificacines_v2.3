@@ -1,6 +1,8 @@
 package com.comunidadesvirtualesonline.cvo_notificacines;
 
 import android.app.Activity;
+import android.app.IntentService;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -17,12 +19,15 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.nio.BufferUnderflowException;
 import java.util.ArrayList;
 
@@ -32,47 +37,88 @@ import java.util.ArrayList;
 public class ConsumosServer  extends AppCompatActivity {
 
 
-    public void ConsumoCardView() {
 
-        String msg = "AVISO:";
-        try {
-            URL url = new URL("http://www.comunidadesvirtualesonline.com/notifications/singup.php?token=");
-            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+    public String mensaje = "MSG";
+    public String nom_db = "10001";
 
-            InputStream in = new BufferedInputStream(urlConnection.getInputStream());
-
-            BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-            StringBuilder responseStrBuilder = new StringBuilder();
-
-            String inputStr;
-            while ((inputStr = streamReader.readLine()) != null)
-                responseStrBuilder.append(inputStr);
-            JSONObject responsJson = new JSONObject(responseStrBuilder.toString());
-
-/*
-            String JsonTitulo = responsJson.getString("titulo");
-            String JsonNomestu = responsJson.getString("nombreestu");
-            String JsonFecha = responsJson.getString("fecha");
-*/
-
-            String JsonTitulo = "HOLA .... !";
-            String JsonNomestu = "daniel Pardo C.";
-            String JsonFecha = "07/06/06";
-
-            TextView CardViewTitulo = (TextView) findViewById(R.id.Titulo);
-            TextView CarViewNombres = (TextView) findViewById(R.id.NombreEstudiante);
-            TextView CardViewFecha = (TextView) findViewById(R.id.fechaNotificacion);
-
-            CardViewTitulo.setText(JsonTitulo);
-            CarViewNombres.setText(JsonNomestu);
-            CardViewFecha.setText(JsonFecha);
+    private static final String TAG = "RegIntentService";
 
 
-        } catch (JSONException | IOException e) {
-            e.printStackTrace();
-            Log.i(msg, "ERROR: " + e);
+    public void checkUser( String User,String contraseña, String token) {
 
-        }
+      try {
+          //CONSUMO AL SERVIDOR WEB...
+          URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-registration.php?token="+token+"&id_db="+nom_db+"&u="+User+"&p="+contraseña);
+          HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+
+          //Envio de token a la base de datos alojada en el servidor web
+
+          HttpURLConnection con = null;
+          try {
+
+
+              // Construir los datos a enviar
+              String data = "body=" + URLEncoder.encode(token, "UTF-8");
+              String data1 = "body1=" + URLEncoder.encode(nom_db, "UTF-8");
+              String data2 = "body2=" + URLEncoder.encode(User, "UTF-8");
+              String data3 = "body3=" + URLEncoder.encode(contraseña, "UTF-8");
+
+              Log.i(mensaje, "DATOS =" + data + data1 + data2 + data3);
+
+              con = (HttpURLConnection) url.openConnection();
+
+              // Activar método POST
+              con.setDoOutput(true);
+
+              // Tamaño previamente conocido
+              con.setFixedLengthStreamingMode(data.getBytes().length);
+
+              // Establecer application/x-www-form-urlencoded debido a la simplicidad de los datos
+              con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+              OutputStream out = new BufferedOutputStream(con.getOutputStream());
+
+              out.write(data.getBytes());
+              out.write(data1.getBytes());
+              out.write(data2.getBytes());
+              out.write(data3.getBytes());
+
+              out.flush();
+              out.close();
+
+          } catch (IOException e) {
+              Log.i(mensaje, "ERROR !!!!! = " + e);
+              e.printStackTrace();
+          } finally {
+              if (con != null)
+                  Log.i(mensaje, "SE DESCONECTO");
+              con.disconnect();
+          }
+
+          //en estas lineas de codigo lo que se espera es obtener datos por medio de un JSON
+          try {
+              InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+              BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+              StringBuilder responseStrBuilder = new StringBuilder();
+
+              String inputStr;
+              while ((inputStr = streamReader.readLine()) != null)
+                  responseStrBuilder.append(inputStr);
+              JSONObject responsJson = new JSONObject(responseStrBuilder.toString());
+
+              Log.i(mensaje, "JSON ! = =" + responsJson);
+
+          } finally {
+              urlConnection.disconnect();
+          }
+      }catch(Exception e){
+          Log.d(mensaje, "ERROR DEL CONSUMO", e);
+      }
+
+
+
+
     }
 }
 

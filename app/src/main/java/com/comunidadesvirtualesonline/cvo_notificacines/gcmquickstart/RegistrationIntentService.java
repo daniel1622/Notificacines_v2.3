@@ -17,6 +17,7 @@
 package com.comunidadesvirtualesonline.cvo_notificacines;
 
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -60,7 +61,7 @@ import cz.msebera.android.httpclient.Header;
 public class RegistrationIntentService extends IntentService {
 
 
-    public String mensaje ="estoy aqui";
+    public String mensaje =">-------<";
 
     public String estado1 ="1";
     public String estado2 ="2";
@@ -75,11 +76,6 @@ public class RegistrationIntentService extends IntentService {
         super(TAG);
     }
 
-    public RegistrationIntentService(View view) {
-        super(TAG);
-        this.view = view;
-
-    }
 
     @Override
     protected void onHandleIntent(Intent intent) {
@@ -99,24 +95,34 @@ public class RegistrationIntentService extends IntentService {
             Log.i(TAG, "GCM Registration Token: " + token);
 
 
+            // este codigo permite almacenar en un xml el token del telefono para luego ser llamado en cualquier clase
+            // que sea necesario su uso.
+            SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putString("TOKEN", token);
+            editor.commit();
 
 
+            String usuario = "laura123456789";
+            String tokenn = "122222999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999assassa";
+            //"http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php"
+            //"http://www.comunidadesvirtualesonline.com/notifications/singup.php?token=
 
 
             //CONSUMO AL SERVIDOR WEB...
-
-
-            URL url = new URL("http://www.comunidadesvirtualesonline.com/notifications/singup.php?token="+token);
+            URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php?token="+tokenn+"&usuario="+usuario);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
 
             //Envio de token a la base de datos alojada en el servidor web
 
             HttpURLConnection con = null;
-
             try {
+
+
                 // Construir los datos a enviar
-                String data = "body=" + URLEncoder.encode(token, "UTF-8");
+                String data = "body=" + URLEncoder.encode(tokenn,"UTF-8");
+             //   String data1 = "body=" + URLEncoder.encode(usuario, "UTF-8");
 
                 Log.i(mensaje,"DATOS ="+data);
 
@@ -134,19 +140,19 @@ public class RegistrationIntentService extends IntentService {
                 OutputStream out = new BufferedOutputStream(con.getOutputStream());
 
                 out.write(data.getBytes());
+              //  out.write(data1.getBytes());
+
                 out.flush();
                 out.close();
 
             } catch (IOException e) {
-                Log.i(mensaje,"ERROR = "+e);
+                Log.i(mensaje,"ERROR !!!!! = "+e);
                 e.printStackTrace();
             } finally {
                 if(con!=null)
                     Log.i(mensaje,"SE DESCONECTO");
                     con.disconnect();
             }
-
-
 
             //en estas lineas de codigo lo que se espera es obtener datos por medio de un JSON
             try {
@@ -158,23 +164,15 @@ public class RegistrationIntentService extends IntentService {
                 String inputStr;
                 while ((inputStr = streamReader.readLine()) != null)
                     responseStrBuilder.append(inputStr);
-             JSONObject responsJson =  new JSONObject(responseStrBuilder.toString());
+                JSONObject responsJson =  new JSONObject(responseStrBuilder.toString());
 
-                Log.i(mensaje,"AQUI ESTOY ="+responsJson.getString("result") );
-                Log.i(mensaje,"AQUI ESTOY ="+estado1 );
+
+                Log.i(mensaje,"RESULT = ="+responsJson.getString("estado") );
+                Log.i(mensaje,"JSON ! = ="+responsJson);
+
                 String ESTADO = responsJson.getString("result");
-                //Redireccion a clases, si el estado es uno (1)se dirigira a los layouts de inicio de sesion, si el
-                // dos(2) se dirigira a los layouts de notificaciones.
-
-             if (estado1 == responsJson.getString("result")){
-                 Log.i(mensaje,"SENTENCIA IF 1 ="+estado1 );
 
 
-                }else if (estado2 == responsJson.getString("result") ){
-                 Log.i(mensaje, "SENTENCIA IF 2 =" + ESTADO);
-                // main.n2(view);
-
-                }
 
             }finally{
                 urlConnection.disconnect();

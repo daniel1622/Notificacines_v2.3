@@ -29,6 +29,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.RegistrationIntentService;
 import com.google.android.gms.common.ConnectionResult;
@@ -65,30 +66,38 @@ public class Main extends AppCompatActivity {
     public String notifi;
     public String inicio;
 
+    public boolean sentToken;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.start_aplication);
 
-        mRegistrationProgressBar = (ProgressBar) findViewById(R.id.registrationProgressBar);
+
         mRegistrationBroadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
-                mRegistrationProgressBar.setVisibility(ProgressBar.GONE);
+
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(context);
                 boolean sentToken = sharedPreferences
                         .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-                    mInformationTextView.setText(getString(R.string.gcm_send_message));
+
+                    notifi(sentToken);
 
 
                 } else {
-                    mInformationTextView.setText(getString(R.string.token_error_message));
+
+                    login(sentToken);
+
                 }
+
             }
         };
-        mInformationTextView = (TextView) findViewById(R.id.informationTextView);
+
+
 
         if (checkPlayServices()) {
             // Start IntentService to register this application with GCM.
@@ -99,17 +108,17 @@ public class Main extends AppCompatActivity {
 
 
 
-     public void n2(View view){
-
-            Log.i(mensaje,"Estoy en el metodo n2 =");
-            Intent i = new Intent(this, Notificaciones.class);
-            startActivity(i);
-
-        }
-
-    public void onClick4(View view){
+    public void notifi (Boolean b){
 
         Intent i = new Intent(this, Notificaciones.class);
+        startActivity(i);
+
+    }
+
+
+    public void login (Boolean b){
+
+        Intent i = new Intent(this, Inicio_Sesion.class);
         startActivity(i);
 
     }
