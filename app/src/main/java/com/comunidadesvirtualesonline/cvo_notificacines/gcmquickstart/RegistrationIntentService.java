@@ -63,14 +63,9 @@ public class RegistrationIntentService extends IntentService {
 
     public String mensaje =">-------<";
 
-    public String estado1 ="1";
-    public String estado2 ="2";
-
-    Main main = new Main();
 
     private static final String TAG = "RegIntentService";
     private static final String[] TOPICS = {"global"};
-    private View view;
 
     public RegistrationIntentService() {
         super(TAG);
@@ -104,14 +99,12 @@ public class RegistrationIntentService extends IntentService {
             editor.commit();
 
 
-            String usuario = "laura123456789";
-            String tokenn = "122222999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999assassa";
             //"http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php"
             //"http://www.comunidadesvirtualesonline.com/notifications/singup.php?token=
-
+            //"http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php?token="+tokenn+"&usuario="+usuario
 
             //CONSUMO AL SERVIDOR WEB...
-            URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php?token="+tokenn+"&usuario="+usuario);
+            URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-validation-token.php?token="+token);
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
             //Envio de token a la base de datos alojada en el servidor web
@@ -121,8 +114,7 @@ public class RegistrationIntentService extends IntentService {
 
 
                 // Construir los datos a enviar
-                String data = "body=" + URLEncoder.encode(tokenn,"UTF-8");
-             //   String data1 = "body=" + URLEncoder.encode(usuario, "UTF-8");
+                String data = "body=" + URLEncoder.encode(token,"UTF-8");
 
                 Log.i(mensaje,"DATOS ="+data);
 
@@ -166,15 +158,15 @@ public class RegistrationIntentService extends IntentService {
                     responseStrBuilder.append(inputStr);
                 JSONObject responsJson =  new JSONObject(responseStrBuilder.toString());
 
-
-                Log.i(mensaje,"RESULT = ="+responsJson.getString("estado") );
+               // Log.i(mensaje,"RESULT = ="+responsJson.getString("estado") );
                 Log.i(mensaje,"JSON ! = ="+responsJson);
 
                 String ESTADO = responsJson.getString("result");
 
-
-
-            }finally{
+            }catch (Exception e){
+                Log.i(mensaje,"ERROR JSON ! = ="+e);
+            }
+            finally{
                 urlConnection.disconnect();
             }
 

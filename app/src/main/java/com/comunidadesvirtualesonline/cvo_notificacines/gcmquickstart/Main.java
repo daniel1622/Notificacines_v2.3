@@ -85,12 +85,13 @@ public class Main extends AppCompatActivity {
                         .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
 
-                    notifi(sentToken);
+
+                    login(sentToken);
 
 
                 } else {
+                    notifi(sentToken);
 
-                    login(sentToken);
 
                 }
 

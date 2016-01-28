@@ -2,13 +2,16 @@ package com.comunidadesvirtualesonline.cvo_notificacines;
 
 import android.app.Activity;
 import android.app.IntentService;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.adapters.EstudianteAdapter;
@@ -34,91 +37,100 @@ import java.util.ArrayList;
 /**
  * Created by Guardian on 19/01/2016.
  */
-public class ConsumosServer  extends AppCompatActivity {
-
+public class ConsumosServer extends IntentService {
 
 
     public String mensaje = "MSG";
-    public String nom_db = "10001";
-
     private static final String TAG = "RegIntentService";
 
+    public ConsumosServer() {
+        super(TAG);
+    }
 
-    public void checkUser( String User,String contraseña, String token) {
-
-      try {
-          //CONSUMO AL SERVIDOR WEB...
-          URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-registration.php?token="+token+"&id_db="+nom_db+"&u="+User+"&p="+contraseña);
-          HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-
-          //Envio de token a la base de datos alojada en el servidor web
-
-          HttpURLConnection con = null;
-          try {
+    @Override
+    protected void onHandleIntent(Intent intent) {
 
 
-              // Construir los datos a enviar
-              String data = "body=" + URLEncoder.encode(token, "UTF-8");
-              String data1 = "body1=" + URLEncoder.encode(nom_db, "UTF-8");
-              String data2 = "body2=" + URLEncoder.encode(User, "UTF-8");
-              String data3 = "body3=" + URLEncoder.encode(contraseña, "UTF-8");
+        SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
-              Log.i(mensaje, "DATOS =" + data + data1 + data2 + data3);
+        String  token = prefs.getString("TOKEN", "id del telefono ");
+        String  u = prefs.getString("u", "usuario ");
+        String  p = prefs.getString("p", "contraseña del usuario ");
+        String  id_db = prefs.getString("id_db", "id del telefono ");
 
-              con = (HttpURLConnection) url.openConnection();
+        Log.i(mensaje,"Usuario Y Contraseña ="+u+"---"+p);
+        Log.i(mensaje,"TOKEN Y NomDB ="+token+"---"+id_db);
 
-              // Activar método POST
-              con.setDoOutput(true);
+        try {
+            //CONSUMO AL SERVIDOR WEB...
+            URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-registration.php?token="+token+"&id_db="+id_db+"&u="+u+"&p="+p);
+            HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
-              // Tamaño previamente conocido
-              con.setFixedLengthStreamingMode(data.getBytes().length);
+            //Envio de token a la base de datos alojada en el servidor web
 
-              // Establecer application/x-www-form-urlencoded debido a la simplicidad de los datos
-              con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+            HttpURLConnection con = null;
+            try {
 
-              OutputStream out = new BufferedOutputStream(con.getOutputStream());
+                // Construir los datos a enviar
+                String data = "body=" + URLEncoder.encode(token,"UTF-8");
 
-              out.write(data.getBytes());
-              out.write(data1.getBytes());
-              out.write(data2.getBytes());
-              out.write(data3.getBytes());
+                Log.i(mensaje,"DATOS ="+data);
 
-              out.flush();
-              out.close();
+                con = (HttpURLConnection)url.openConnection();
 
-          } catch (IOException e) {
-              Log.i(mensaje, "ERROR !!!!! = " + e);
-              e.printStackTrace();
-          } finally {
-              if (con != null)
-                  Log.i(mensaje, "SE DESCONECTO");
-              con.disconnect();
-          }
+                // Activar método POST
+                con.setDoOutput(true);
 
-          //en estas lineas de codigo lo que se espera es obtener datos por medio de un JSON
-          try {
-              InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+                // Tamaño previamente conocido
+                con.setFixedLengthStreamingMode(data.getBytes().length);
 
-              BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
-              StringBuilder responseStrBuilder = new StringBuilder();
+                // Establecer application/x-www-form-urlencoded debido a la simplicidad de los datos
+                con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
 
-              String inputStr;
-              while ((inputStr = streamReader.readLine()) != null)
-                  responseStrBuilder.append(inputStr);
-              JSONObject responsJson = new JSONObject(responseStrBuilder.toString());
+                OutputStream out = new BufferedOutputStream(con.getOutputStream());
 
-              Log.i(mensaje, "JSON ! = =" + responsJson);
+                out.write(data.getBytes());
+                //  out.write(data1.getBytes());
 
-          } finally {
-              urlConnection.disconnect();
-          }
-      }catch(Exception e){
-          Log.d(mensaje, "ERROR DEL CONSUMO", e);
-      }
+                out.flush();
+                out.close();
 
 
+            } catch (IOException e) {
+                Log.i(mensaje, "ERROR DEL ENVIO = " + e);
+                e.printStackTrace();
+            } finally {
+                if (con != null)
+                    Log.i(mensaje, "SE DESCONECTO");
+                con.disconnect();
+            }
+
+            //en estas lineas de codigo lo que se espera es obtener datos por medio de un JSON
+            try {
+                InputStream in = new BufferedInputStream(urlConnection.getInputStream());
+
+                BufferedReader streamReader = new BufferedReader(new InputStreamReader(in, "UTF-8"));
+                StringBuilder responseStrBuilder = new StringBuilder();
+
+                String inputStr;
+                while ((inputStr = streamReader.readLine()) != null)
+                    responseStrBuilder.append(inputStr);
+                JSONObject responsJson =  new JSONObject(responseStrBuilder.toString());
+
+                Log.i(mensaje, "JSON ! = =" + responsJson);
+
+            }catch (Exception e){
+                Log.i(mensaje, "ERROR AL RECIBIR EL JSON = " + e);
+                e.printStackTrace();
+            }
+            finally {
+                urlConnection.disconnect();
+            }
 
 
+        }catch(Exception e){
+            Log.d(mensaje, "ERROR DEL CONSUMO", e);
+        }
     }
 }
 

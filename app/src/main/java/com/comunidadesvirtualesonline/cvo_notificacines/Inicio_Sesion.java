@@ -34,10 +34,9 @@ public class Inicio_Sesion extends AppCompatActivity implements
         View.OnClickListener {
 
     public String mensaje = "MSG";
-    public String User;
-    public String contraseña;
-    public String nom_db = "10001";
-    public String token;
+    public String User,contraseña,token;
+    public String id_db = "10001";
+    private EditText inicio_usuario, inicio_contraseña;
 
 
     @Override
@@ -45,32 +44,13 @@ public class Inicio_Sesion extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.inicar_sesion);
 
+
+
         Button boton = (Button) findViewById(R.id.btnRegistrarUser);
         boton.setOnClickListener(this);
 
     }
 
-    public void RegistrationUser (View v) {
-
-        EditText inicio_usuario = (EditText) findViewById(R.id.inicio_usuario);//aqui se obtiene el unsuario dijitado en el layaut iniciar_sesion.
-        EditText inicio_contraseña = (EditText) findViewById(R.id.inicio_contraseña); //aqui se obtiene la contraseña dijitada en el layaut iniciar_sesion.
-
-        // se debe convertir el EditText a un string para luego ser enviado a la base de datos.
-        User = inicio_usuario.toString();
-        contraseña = inicio_contraseña.toString();
-
-        SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-
-        token = prefs.getString("TOKEN", "id del telefono ");
-
-        Log.i(mensaje,"ESTE ES EL TOKEN ALMACENADO EN EL SharedPreferences"+token);
-
-        Log.i(mensaje," DATTOS SESION "+token+User+contraseña);
-
-        ConsumosServer consumosServer = new ConsumosServer();
-        consumosServer.checkUser(User,contraseña,token);
-
-    }
 
     @Override
     public void onClick(View v) {
@@ -79,24 +59,28 @@ public class Inicio_Sesion extends AppCompatActivity implements
             case R.id.btnRegistrarUser://Si el id del botón pulsado se corresponde con el id que tenemos aquí entraría dentro del case.
                 //Aquí va el código que se va a ejecutar cuando se pulse el botón.
 
-                EditText inicio_usuario = (EditText) findViewById(R.id.inicio_usuario);//aqui se obtiene el unsuario dijitado en el layaut iniciar_sesion.
-                EditText inicio_contraseña = (EditText) findViewById(R.id.inicio_contraseña); //aqui se obtiene la contraseña dijitada en el layaut iniciar_sesion.
+                inicio_usuario = (EditText) findViewById(R.id.inicio_usuario);//aqui se obtiene el unsuario dijitado en el layaut iniciar_sesion.
+                inicio_contraseña = (EditText) findViewById(R.id.inicio_contraseña); //aqui se obtiene la contraseña dijitada en el layaut iniciar_sesion.
+
+                Log.i(mensaje,"DATOS DEL EDITTEXT="+inicio_usuario+"--"+inicio_contraseña);
 
                 // se debe convertir el EditText a un string para luego ser enviado a la base de datos.
-                User = inicio_usuario.toString();
-                contraseña = inicio_contraseña.toString();
+                User = inicio_usuario.getText().toString();
+                contraseña = inicio_contraseña.getText().toString();
+                Log.i(mensaje,"DATOS DEL EDITTEXT TRANSFORMADOS A STRING= "+User+"----"+contraseña);
 
                 SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
                 token = prefs.getString("TOKEN", "id del telefono ");
 
-                Log.i(mensaje,"ESTE ES EL TOKEN ALMACENADO EN EL SharedPreferences"+token);
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("u", User);
+                editor.putString("p", contraseña);
+                editor.putString("id_db", id_db);
+                editor.commit();
 
-                Log.i(mensaje," DATTOS SESION "+token+User+contraseña);
-
-                ConsumosServer consumosServer = new ConsumosServer();
-                consumosServer.checkUser(User,contraseña,token);
-
+                Intent i = new Intent(this, ConsumosServer.class);
+                startService(i);
         }
 
     }
