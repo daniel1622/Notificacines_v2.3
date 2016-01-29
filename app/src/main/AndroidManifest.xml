@@ -138,10 +138,6 @@
             android:name=".RegistrationIntentService"
             android:exported="false"></service>
 
-        <service
-            android:name=".GCMIntentService"
-            android:exported="false"></service>
-
 
         <service
             android:name=".ConsumosServer"

@@ -93,8 +93,8 @@ public class RegistrationIntentService extends IntentService {
             // este codigo permite almacenar en un xml el token del telefono para luego ser llamado en cualquier clase
             // que sea necesario su uso.
             SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
-
             SharedPreferences.Editor editor = prefs.edit();
+
             editor.putString("TOKEN", token);
             editor.commit();
 
@@ -158,10 +158,17 @@ public class RegistrationIntentService extends IntentService {
                     responseStrBuilder.append(inputStr);
                 JSONObject responsJson =  new JSONObject(responseStrBuilder.toString());
 
-               // Log.i(mensaje,"RESULT = ="+responsJson.getString("estado") );
                 Log.i(mensaje,"JSON ! = ="+responsJson);
 
+                // se obtiene el estado que se encuentra en el Json del consumo. 1 es que el token ya existe en la bd.
+                // 2 es que el token no exite en la bd.
                 String ESTADO = responsJson.getString("result");
+                Log.i(mensaje,"RESULT = "+responsJson.getString("result"));
+
+                //se guarda el estado del Json en un SharePrefence para luego se llamado en el Main de google
+                editor.putString("estado_token", ESTADO);
+                editor.commit();
+
 
             }catch (Exception e){
                 Log.i(mensaje,"ERROR JSON ! = ="+e);

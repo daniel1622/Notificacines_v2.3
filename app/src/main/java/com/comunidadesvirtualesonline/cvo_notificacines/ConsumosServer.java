@@ -119,6 +119,15 @@ public class ConsumosServer extends IntentService {
 
                 Log.i(mensaje, "JSON ! = =" + responsJson);
 
+                String estado_registration = responsJson.getString("result");
+                Log.i(mensaje, " estado_registration consumo = " + responsJson.getString("result"));
+
+                SharedPreferences pref = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("estado_registration",estado_registration);
+                editor.commit();
+
+
             }catch (Exception e){
                 Log.i(mensaje, "ERROR AL RECIBIR EL JSON = " + e);
                 e.printStackTrace();

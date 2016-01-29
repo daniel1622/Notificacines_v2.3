@@ -36,18 +36,6 @@ import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.comunidadesvirtualesonline.cvo_notificacines.gcmquickstart.*;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-
 public class Main extends AppCompatActivity {
 
     private static final int PLAY_SERVICES_RESOLUTION_REQUEST = 9000;
@@ -61,12 +49,9 @@ public class Main extends AppCompatActivity {
     public String mensaje ="-------";
 
     public String estado1 ="1";
-    public String estado2 ="2";
+    public String estado0 ="0";
 
-    public String notifi;
-    public String inicio;
 
-    public boolean sentToken;
 
 
     @Override
@@ -79,21 +64,38 @@ public class Main extends AppCompatActivity {
             @Override
             public void onReceive(Context context, Intent intent) {
 
+
+
                 SharedPreferences sharedPreferences =
                         PreferenceManager.getDefaultSharedPreferences(context);
                 boolean sentToken = sharedPreferences
                         .getBoolean(QuickstartPreferences.SENT_TOKEN_TO_SERVER, false);
                 if (sentToken) {
-
-
-                    login(sentToken);
-
+                    Log.i(mensaje, "se registro el token correctamente en GoogleMesaging  " + sentToken);
+                    notifi();
 
                 } else {
-                    notifi(sentToken);
-
+                    Log.i(mensaje,"No se registro el token en GoogleMesaging   "+sentToken);
 
                 }
+
+
+                //llamamos por medio del sharePreference el estado obtenido en el Json
+                // 1 = el token si existe en la base de datos
+                // 2 = el token no existe en la base de datos
+                SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+
+                String  estado_token = prefs.getString("estado_token", "estado de si existe o no el token en la bd");
+                if (estado_token.equals(estado1)){
+                    registration();
+
+                }else{
+                    if (estado_token.equals(estado0)){
+                        notifi();
+                    }
+                }
+
+
 
             }
         };
@@ -105,11 +107,13 @@ public class Main extends AppCompatActivity {
             Intent intent = new Intent(this, RegistrationIntentService.class);
             startService(intent);
         }
+
+
     }
 
 
 
-    public void notifi (Boolean b){
+    public void notifi (){
 
         Intent i = new Intent(this, Notificaciones.class);
         startActivity(i);
@@ -117,7 +121,7 @@ public class Main extends AppCompatActivity {
     }
 
 
-    public void login (Boolean b){
+    public void registration (){
 
         Intent i = new Intent(this, Inicio_Sesion.class);
         startActivity(i);
