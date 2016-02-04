@@ -1,7 +1,9 @@
 package com.comunidadesvirtualesonline.cvo_notificacines;
 
 import android.app.FragmentTransaction;
+import android.content.Context;
 import android.content.Intent;
+
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,10 +14,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.app.Fragment;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.gcmquickstart.*;
@@ -23,7 +27,6 @@ import com.comunidadesvirtualesonline.cvo_notificacines.gcmquickstart.*;
 import com.comunidadesvirtualesonline.cvo_notificacines.fragments.NotificacionesFragment;
 import com.comunidadesvirtualesonline.cvo_notificacines.fragments.usuarios_fragment;
 
-import java.io.IOException;
 
 public class Notificaciones extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -37,11 +40,15 @@ public class Notificaciones extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notificaciones);
 
+
+
+
+
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
 
-      // setToolbar();
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {

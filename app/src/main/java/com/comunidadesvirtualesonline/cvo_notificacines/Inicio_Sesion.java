@@ -14,21 +14,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLEncoder;
+import com.comunidadesvirtualesonline.cvo_notificacines.consumos.ConsumosServer;
 
 
 /**
@@ -77,7 +63,9 @@ public class Inicio_Sesion extends AppCompatActivity implements
                 editor.putString("u", User);
                 editor.putString("p", contraseña);
                 editor.putString("id_db", id_db);
+                editor.putInt("consumo",1);
                 editor.commit();
+
 
                 Intent i = new Intent(this, ConsumosServer.class);
                 startService(i);

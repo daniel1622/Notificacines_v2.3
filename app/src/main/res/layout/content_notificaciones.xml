@@ -13,13 +13,16 @@
     tools:showIn="@layout/app_bar_notificaciones"
     android:id="@+id/main_Content">
 
+
+
     <FrameLayout
         android:id="@+id/Content_Frame"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"></FrameLayout>
+        android:layout_alignParentEnd="true">
+
+    </FrameLayout>
 
 
 </RelativeLayout>

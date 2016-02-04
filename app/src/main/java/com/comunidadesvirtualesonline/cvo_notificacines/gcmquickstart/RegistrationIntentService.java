@@ -33,8 +33,7 @@ import com.google.android.gms.gcm.GcmPubSub;
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 import com.google.android.gms.iid.InstanceID;
 import com.comunidadesvirtualesonline.cvo_notificacines.gcmquickstart.*;
-import com.loopj.android.http.AsyncHttpClient;
-import com.loopj.android.http.AsyncHttpResponseHandler;
+
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -55,7 +54,7 @@ import java.util.List;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.models.RegObject;
 
-import cz.msebera.android.httpclient.Header;
+
 
 
 public class RegistrationIntentService extends IntentService {

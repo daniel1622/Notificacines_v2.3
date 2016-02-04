@@ -8,6 +8,24 @@ public class Estudiante {
     private String Titulo;
     private String NomEstudiante;
     private String Fecha;
+    private String Url;
+    private String tipo;
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
+    }
 
     public void setTitulo(String titulo) {
         Titulo = titulo;

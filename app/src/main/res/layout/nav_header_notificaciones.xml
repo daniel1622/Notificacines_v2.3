@@ -20,15 +20,12 @@
         android:layout_marginBottom="1dp"
         android:scaleType="centerCrop"
         android:src="@drawable/avatar"
-        app:border_color="@color/ImageBorder"
-        app:border_width="2dp"
+        app:civ_border_color="@color/ImageBorder"
+        app:civ_border_width="2dp"
         android:onClick=""
 
 
-
-
         />
-
 
     <TextView
         android:layout_width="match_parent"
