@@ -21,6 +21,7 @@ import android.view.View;
 import android.app.Fragment;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.gcmquickstart.*;
 
@@ -91,6 +92,12 @@ public class Notificaciones extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
+    }
+
+
+    public  void nuevoUser(View v){
+        Intent i = new Intent(this,RegistrationUser.class);
+        startActivity(i);
     }
 
     @Override

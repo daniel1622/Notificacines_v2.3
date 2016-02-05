@@ -2,6 +2,8 @@ package com.comunidadesvirtualesonline.cvo_notificacines.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.RequiresPermission;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -55,14 +57,24 @@ public class EstudianteAdapter extends RecyclerView.Adapter<EstudianteAdapter.Vi
 
         ViewHolder viewHolder = new ViewHolder(v);
 
+        Bitmap bitmap = BitmapFactory.decodeResource(v.getResources(), R.drawable.avatar);
+        Bitmap circularBitmap = ImageConverter.getRoundedCornerBitmap(bitmap, 100);
+
+        ImageView circularImageView = (ImageView)v.findViewById(R.id.imageUser);
+        circularImageView.setImageBitmap(circularBitmap);
+
+
         viewHolder.relativeLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView textViewUrl = (TextView) v.findViewById(R.id.url);
                 String url = textViewUrl.getText().toString();
                 Intent i = new Intent(mContext, webActivity.class);
-                i.putExtra("url",url);
+                i.putExtra("url", url);
                 mContext.startActivity(i);
+
+                CircleImageView estadoCardView = (CircleImageView) v.findViewById(R.id.circle_Estado);
+                estadoCardView.setImageResource(R.drawable.circle);
             }
         });
 

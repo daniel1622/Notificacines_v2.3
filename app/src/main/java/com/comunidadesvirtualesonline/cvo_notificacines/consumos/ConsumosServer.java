@@ -58,10 +58,10 @@ public class ConsumosServer extends IntentService {
         String  token = prefs.getString("TOKEN", "id del telefono ");
         String  u = prefs.getString("u", "usuario ");
         String  p = prefs.getString("p", "contraseña del usuario ");
-        String  id_db = prefs.getString("id_db", "id del telefono ");
+        String  id_db = prefs.getString("id_db", "nombre de la base de datos ");
 
         int consumo = prefs.getInt("consumo",0);
-        consumo = 2;
+
 
         Log.i(mensaje,"Usuario Y Contraseña ="+u+"---"+p);
         Log.i(mensaje,"TOKEN Y NomDB ="+token+"---"+id_db);
@@ -69,7 +69,7 @@ public class ConsumosServer extends IntentService {
         switch (consumo){
 
             case 1 :
-                Log.d(mensaje, "ESTOY EN EL CASO 1");
+                Log.d(mensaje, "ESTOY EN EL CONSUMO CASO 1");
                 try {
                     //CONSUMO AL SERVIDOR WEB...
                     URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-registration.php?token="+token+"&id_db="+id_db+"&u="+u+"&p="+p);
@@ -153,7 +153,7 @@ public class ConsumosServer extends IntentService {
                 break;
 
             case 2:
-                Log.d(mensaje, "ESTOY EN EL CASO 2");
+                Log.d(mensaje, "ESTOY EN EL CONSUMO  CASO 2");
                 try {
                     //CONSUMO AL SERVIDOR WEB...
                     URL url = new URL("http://www.comunidadesvirtualesonline.com/gcmphp/gcmphp-notification.php?token="+token);

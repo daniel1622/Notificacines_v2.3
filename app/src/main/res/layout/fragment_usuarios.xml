@@ -17,13 +17,17 @@
 
 
     <Button
+        android:id="@+id/btn_nuevoUser"
         android:layout_width="100dp"
         android:layout_height="50dp"
         android:background="@color/colorPrimaryDark"
         android:text="Registrar "
+        android:onClick="nuevoUser"
         android:textColor="@color/ImageBorder"
         android:layout_gravity="center"
         android:layout_marginTop="100dp"
+        android:clickable="true"
+
 
         />
 

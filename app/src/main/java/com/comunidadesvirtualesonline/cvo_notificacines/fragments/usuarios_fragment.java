@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.R;
 import com.comunidadesvirtualesonline.cvo_notificacines.adapters.EstudianteAdapter;
@@ -37,6 +38,8 @@ public class usuarios_fragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_usuarios, container, false);
+
+
     }
 
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -62,6 +65,7 @@ public class usuarios_fragment extends Fragment {
 
 
     }
+
 
 
 }

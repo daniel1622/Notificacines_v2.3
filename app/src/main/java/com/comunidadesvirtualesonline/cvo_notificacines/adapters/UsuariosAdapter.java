@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.comunidadesvirtualesonline.cvo_notificacines.R;
 import com.comunidadesvirtualesonline.cvo_notificacines.models.Usuarios;
@@ -41,8 +42,9 @@ public class UsuariosAdapter extends RecyclerView.Adapter<UsuariosAdapter.ViewHo
         holder.estuNombre.setText(users.getNomEstudiante());
         holder.estuCurso.setText(users.getCurEstudiante());
         holder.estuID.setText(users.getIdEstudiante());
-    }
 
+
+    }
     @Override
     public int getItemCount() {
         return usuarios.size();

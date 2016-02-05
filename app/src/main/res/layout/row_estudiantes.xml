@@ -5,59 +5,70 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:foreground="?android:attr/selectableItemBackground"
     android:clickable="true"
-    android:layout_margin="2dp"
+    android:layout_margin="10dp"
     android:id="@+id/card_view"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    app:cardCornerRadius="4dp"
+    app:cardCornerRadius="6dp"
 
     >
 
 <RelativeLayout
-        android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relLayout"
     >
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/circle_image"
-        android:layout_width="70dp"
-        android:layout_height="70dp"
-        android:layout_margin="10dp"
+
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_margin="20dp"
         android:scaleType="centerCrop"
         android:src="@drawable/placeholder1"
-        app:civ_border_color="@color/ImageBorder"
-        app:civ_border_width="2dp"
+        android:id="@+id/imageUser"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
+
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/circle_image1"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:src="@drawable/placeholder2"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:src="@drawable/placeholder1"
         android:scaleType="centerCrop"
         app:civ_border_color="@color/ImageBorder"
         app:civ_border_width="2dp"
-        android:layout_alignBottom="@+id/circle_image"
-        android:layout_alignRight="@+id/circle_image"
-        android:layout_alignEnd="@+id/circle_image"
-        android:layout_marginRight="10dp"
-        android:layout_marginEnd="10dp" />
+        android:layout_marginRight="21dp"
+        android:layout_marginEnd="21dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
-
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/circle_Estado"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:src="@drawable/btn_circle_default"
+        android:scaleType="centerCrop"
+        app:civ_border_color="#42A5F8"
+        app:civ_border_width="2dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/circle_image1"
+        android:layout_toStartOf="@+id/circle_image1"
+        android:layout_marginRight="23dp"
+        android:layout_marginEnd="23dp" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="TITULO"
         android:textStyle="bold"
-        android:textSize="18dp"
+        android:textSize="15dp"
         android:typeface="sans"
         android:maxLines="2"
-        android:layout_marginTop="15dp"
         android:id="@+id/Titulo"
-        android:layout_alignParentTop="true"
+        android:layout_alignTop="@+id/imageUser"
         android:layout_alignLeft="@+id/NombreEstudiante"
         android:layout_alignStart="@+id/NombreEstudiante" />
 
@@ -67,26 +78,25 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="03/07/2016"
-        android:textSize="15dp"
-        android:layout_marginRight="10dp"
+        android:textSize="12dp"
         android:textColor="#2196F3"
         android:id="@+id/fechaNotificacion"
-        android:layout_alignBottom="@+id/circle_image"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_below="@+id/NombreEstudiante"
+        android:layout_alignLeft="@+id/NombreEstudiante"
+        android:layout_alignStart="@+id/NombreEstudiante" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="noombre del estudiante"
-        android:textSize="15dp"
+        android:textSize="12dp"
         android:typeface="normal"
         android:maxLines="2"
         android:id="@+id/NombreEstudiante"
         android:layout_below="@+id/Titulo"
-        android:layout_toRightOf="@+id/circle_image"
-        android:layout_toEndOf="@+id/circle_image" />
+        android:layout_toRightOf="@+id/imageUser"
+        android:layout_toEndOf="@+id/imageUser" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -95,10 +105,9 @@
         android:text="Large Text"
         android:id="@+id/url"
         android:maxLines="0"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/Titulo"
-        android:layout_toEndOf="@+id/Titulo"
-        android:layout_above="@+id/NombreEstudiante" />
+        android:layout_below="@+id/tipo"
+        android:layout_alignRight="@+id/circle_image1"
+        android:layout_alignEnd="@+id/circle_image1" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -109,6 +118,8 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/fechaNotificacion"
         android:layout_alignEnd="@+id/fechaNotificacion" />
+
+
 
 
 </RelativeLayout>

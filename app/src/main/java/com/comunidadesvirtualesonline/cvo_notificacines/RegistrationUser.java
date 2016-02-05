@@ -20,7 +20,7 @@ import com.comunidadesvirtualesonline.cvo_notificacines.consumos.ConsumosServer;
 /**
  * Created by Guardian on 13/01/2016.
  */
-public class Inicio_Sesion extends AppCompatActivity implements
+public class RegistrationUser extends AppCompatActivity implements
         View.OnClickListener {
 
     public String mensaje = "MSG";
@@ -88,28 +88,30 @@ public class Inicio_Sesion extends AppCompatActivity implements
 
                 if (estado_registration.equals("0")){
                     Log.i(mensaje,"if 0 "+estado_registration);
-                    /*Intent intent = new Intent(this, Notificaciones.class);
-                    startActivity(intent);*/
-                }else {
-                    if (estado_registration.equals("1")){
-                        Log.i(mensaje,"if 1 "+estado_registration);
-                        Toast toast = Toast.makeText(this, "!Error: No se puede registrar¡", Toast.LENGTH_SHORT);
-                        toast.show();
-                    }else{
-                        if (estado_registration.equals("2")){
-                            Log.i(mensaje, "if 2 " + estado_registration);
+                    Toast toast = Toast.makeText(this, "El usuario se registro correctamente", Toast.LENGTH_SHORT);
+                    toast.show();
 
-                            Toast toast = new Toast(this);
-                            toast.setDuration(duration);
-                            toast.setView(layout);
-                            toast.show();
-                        }
+                    Intent intent = new Intent(this, Notificaciones.class);
+                    startActivity(intent);
+                }else
+                       if (estado_registration.equals("1")){
+                       Log.i(mensaje,"if 1 "+estado_registration);
+                       Toast toast = Toast.makeText(this, "!Error: No se puede registrar¡", Toast.LENGTH_SHORT);
+                       toast.show();
+
+                    }else
+                       if (estado_registration.equals("2")){
+                           Log.i(mensaje, "if 2 " + estado_registration);
+
+                Toast toast = new Toast(this);
+                toast.setDuration(duration);
+                toast.setView(layout);
+                toast.show();
                     }
                 }
         }
+}
 
-        }
 
-    }
 
 

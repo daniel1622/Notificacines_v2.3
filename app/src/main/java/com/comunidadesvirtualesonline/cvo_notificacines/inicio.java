@@ -22,7 +22,7 @@ public class inicio  extends AppCompatActivity {
     public void onClickInicio (View v){
 
 
-        Intent i = new Intent(this, Inicio_Sesion.class );
+        Intent i = new Intent(this, RegistrationUser.class );
         startActivity(i);
     }
 }
